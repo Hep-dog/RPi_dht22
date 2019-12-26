@@ -1,0 +1,51 @@
+#!/usr/bin/python
+
+'''
+    This script is used to print the last 60 results of  DHT22/AM2302 sensor for remote servers
+'''
+def avg_list( results ):
+    total = 0.0
+    for item in results:
+        total = total + float(item)
+    total = total / float(len(results))
+    return total
+
+
+import os, commands
+
+num =60
+
+cmd1 = 'tail -n ' + str(num) + ' /home/pi/Work/DHT22/Run/Log/Temp_Humi.log | awk -F \' \' \'{print $1}\''
+cmd2 = 'tail -n ' + str(num) + ' /home/pi/Work/DHT22/Run/Log/Temp_Humi.log | awk -F \' \' \'{print $2}\''
+cmd3 = 'tail -n ' + str(num) + ' /home/pi/Work/DHT22/Run/Log/Temp_Humi.log | awk -F \' \' \'{print $4}\''
+
+
+(status, dates) = commands.getstatusoutput(cmd1)
+(status, temps) = commands.getstatusoutput(cmd2)
+(status, humis) = commands.getstatusoutput(cmd3)
+
+dates = dates.split('\n')
+temps = temps.split('\n')
+humis = humis.split('\n')
+
+num_temps = []
+num_humis = []
+
+for i in range(num):
+    cmd = 'date -d @' + dates[i]
+    (status, result)  = commands.getstatusoutput(cmd)
+
+    num_temps.append( (temps[i] .split("=")[1]) .split("C")[0] )
+    num_humis.append( (humis[i] .split("=")[1]) .split("%")[0] )
+
+    print( result + ":  " + temps[i] + "  and  " + humis[i] )
+
+print( "\nThe max temperature is: " + str( max(num_temps) ) + " C")
+print( "The min temperature is: " + str( min(num_temps) ) + " C")
+print( "The ave temperature is: " + str(avg_list(num_temps)) + " C" )
+
+print( "\nThe max humidity is: " + str( max(num_humis) ) + " %")
+print( "The min humidity is: " + str( min(num_humis) ) + " %")
+print( "The ave humidity is: " + str(avg_list(num_humis)) + " %" )
+
+
