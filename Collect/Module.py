@@ -36,9 +36,6 @@ class Collection():
             data = [
                     {
                         "measurement" : self.meas,
-                        #                    "tags" : {
-                        #                        "location" : location,
-                        #                        },
                         "time" : iso,
                         "fields" : {
                             "temperature" : temperature,
@@ -76,9 +73,6 @@ class Collection():
                 data = [
                         {
                             "measurement" : self.meas,
-                            #                    "tags" : {
-                            #                        "location" : location,
-                            #                        },
                             "time" : iso,
                             "fields" : {
                                 "temperature" : temp,
