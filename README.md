@@ -1,7 +1,7 @@
 ### This project is used to read the temperature and humidity values using the DHT11/DHT22 sensor for Raspberry
 ### The core package is the Adafruit_DHT
 ### Author: Jiyizi 
-### Any problem you can contact: shenpx@ihep.ac.cn
+### Any problem you can contact: shenpx91@gmail.com
 
 Two methods listed in this reposity, to transfer the data to influxdb and display it using the grafana:
 
@@ -11,10 +11,12 @@ Two methods listed in this reposity, to transfer the data to influxdb and displa
 The first one is easy for configuration and modularizing for multi and different sensors,
 so we take it as the official method in the further work.
 
-======================== How to use chapter =========================
+======================== How to use =========================
 
-We use the class named "Collection" in Module.py, to read, record and transfer data,
-there are several parameters should be give firstly, and the data fomat:
+For Raspberry Pi Client:
+
+    We use the class named "Collection" in Module.py, to read, record and transfer data,
+    there are several parameters should be give firstly, and the data fomat:
 
 		host = host		// The IP address for influxdb. The default value is ok, which can be obtained with the function "Check_IP"
 		port = port		// Port for influxdb, default is ok
@@ -26,8 +28,23 @@ there are several parameters should be give firstly, and the data fomat:
 		sensor = sensor		// Name of sensor for AdafruitDHT, like "Adafruit_DHT.DHT11"
 		sensor_gpip = sensor_gpip // the gpio BCM number of the sensor
 
+    the example for RPi to collect data is the script named "run.py" in Collect directory
 
-======================== Install and setup chapter ==================
+Then we use rsync + inotify to synchronize data from RPi client to Ubuntu server.
+More detailed descriptions can be found in the Sync directory
+
+
+For the Ubuntu server:
+
+    We transfer the data to influxdb with the functions defined in class "Collection".
+    Then we run the main function in "Display" every minutes by crontab.
+
+    One note: The data didn't updated to influxdb when using the crontab, caused by
+    the environment of crontab not same as shell (the command "ifconfig" couldn't be found).
+    We use the absolute directory for the files and commands to fix this.
+
+
+======================== Install and setup ==================
 The softwares used:
 
 1.  Influxdb  ( database )
