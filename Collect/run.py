@@ -1,7 +1,7 @@
 import time, sys, datetime, logging, os, commands
 import Adafruit_DHT
-from influxdb import InfluxDBClient
 import Module
+from influxdb import InfluxDBClient
 
 def main():
 
@@ -11,8 +11,8 @@ def main():
     passwd = ""
     dbname = "Test"
     sensor = Adafruit_DHT.DHT11
-    sensor_gpip = 4
-    output = "/home/pi/Work/dht22/Collect/data/test.log"
+    sensor_gpip = 16
+    output = "/home/pi/Work/RPi_dht22/Collect/data/test.log"
     measurement = "dht11"
 
     # Create class to read and write dht11 data

@@ -3,7 +3,7 @@
 
 import os, time
 
-cmd = 'sudo python /home/pi/Work/dht22/Collect/run.py'
+cmd = 'sudo python /home/pi/Work/RPi_dht22/Collect/Three_dht11.py'
 for t in range(1, 60, 30):
     os.system(cmd)
     time.sleep(30)

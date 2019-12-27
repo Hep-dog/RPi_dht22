@@ -1,0 +1,11 @@
+[Unit]
+Description=Service for trans
+After=network.target
+
+[Service]
+TimeoutStartSec=30
+ExecStart=/home/pi/Work/RPi_dht22/Sync/trans.sh
+ExecStop=/bin/kill $MAINPID
+
+[Install]
+WantedBy=multi-user.target

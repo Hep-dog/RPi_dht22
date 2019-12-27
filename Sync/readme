@@ -1,0 +1,32 @@
+The scripts in this directory are used to synchronize the data to server with the following steps:
+(Using the rsync + inotify)
+	
+	0.  Install the rsync and inotify in server, and rsync in clents.
+		$ sudo apt install inotify-tools
+
+	1. Setup for the server
+
+		a. copy the templet file for rsyncd.conf to /etc
+
+		b. copy the templet file for rsyncd.secrets to /etc (user should be same as rsyncd.conf, and password should be same with Clents)
+
+		c. chmod 600 /etc/rsyncd.secrets
+
+		d. sudo systemctl restart rsyncd
+
+		e. sudo systemctl enable  rsyncd (Working and the system startup)
+
+
+	2. Setup for the Clients:
+
+		a. copy the templet file for rsyncd.secrets to /etc (just hold the password, which is same with the server)
+
+		b. chmod 600 /etc/rsyncd.secrets
+
+		c. copy the run scrpit and set it working after the Clients startup (we use the systemd service)	
+			$ sudo cp .../Sync/service/trans.service  /usr/lib/systemd/system/trans.service
+			$ sudu systemctl daemon-reload
+			$ sudo systemctl start trans.service
+			$ sudo systemctl enable trans.service (Running after the Pi startup)
+		
+		
