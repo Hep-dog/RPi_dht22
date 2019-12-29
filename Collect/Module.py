@@ -2,7 +2,7 @@
 
 import time, sys, datetime, logging, os, commands
 import Adafruit_DHT
-from influxdb import InfluxDBClient
+#from influxdb import InfluxDBClient
 
 
 class Collection():
@@ -63,8 +63,8 @@ class Collection():
 
                     # Create the InfluxDB client object
                     # The data will be saved locally, even thought the influxdb doesn't works
-                    client = InfluxDBClient( self.host, self.port, self.user, self.passwd, self.dbname)
-                    client.write_points(data)
+                    #client = InfluxDBClient( self.host, self.port, self.user, self.passwd, self.dbname)
+                    #client.write_points(data)
                     #print("[%s] Temp: %s, Humidity: %s" % (iso ,temperature, humidity))
                     break
 
@@ -92,11 +92,11 @@ class Collection():
                                 }
                             }
                         ]
-                if temp is not None and humi is not None:
-                    if float(humi)<100:
+                #if temp is not None and humi is not None:
+                   # if float(humi)<100:
                         # Create the InfluxDB client object
-                        client = InfluxDBClient( self.host, self.port, self.user, self.passwd, self.dbname)
-                        client.write_points(data)
+                        #client = InfluxDBClient( self.host, self.port, self.user, self.passwd, self.dbname)
+                        #client.write_points(data)
                         #print("[%s] Temp: %s, Humidity: %s" % (iso ,temperature, humidity))
         
         file.close()
