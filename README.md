@@ -44,7 +44,17 @@ For the Ubuntu server:
     We use the absolute directory for the files and commands to fix this.
 
 
+Note:
+
+    Since we use the rsync to synchronize data from RPi clients to Ubuntu server,
+    the data in server will be lost if those in clients are lost.
+    So we add the script in directory "Backup" to backup data day by day.
+    In this way, the origin data could be keey the size for latest few days
+    to save storage, because all data are backup in server.
+    One should add the running of the backup script to crontab with per day schedule.
+
 ======================== Install and setup ==================
+
 The softwares used:
 
 1.  Influxdb  ( database )
