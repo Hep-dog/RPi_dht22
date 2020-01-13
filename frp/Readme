@@ -1,0 +1,14 @@
+The files in this fold are used to connect two different local clients using a server and frp
+
+To realize this you should:
+
+1. Install and configure the frps and frps.ini in the server
+	./frps -c ./frps.ini	
+
+2. Install and configure the frpc and frpc.ini in the clients
+	./frpc -c ./frpc.ini	
+
+3. Realize the auto-running at the startup for server and clients the frpc/frps using the service
+
+4. Connect the different local-network clients with:
+	ssh -oPort=remote_port_number pi@your_server_ip

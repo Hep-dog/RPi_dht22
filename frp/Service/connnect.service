@@ -1,0 +1,11 @@
+[Unit]
+Description=Service for frpc
+After=network.target
+
+[Service]
+TimeoutStartSec=30
+ExecStart=/home/pi/Software/frpc -c /usr/local/etc/frpc.ini
+ExecStop=/bin/kill $MAINPID
+
+[Install]
+WantedBy=multi-user.target
