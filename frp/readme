@@ -12,3 +12,14 @@ To realize this you should:
 
 4. Connect the different local-network clients with:
 	ssh -oPort=remote_port_number pi@your_server_ip
+
+5. Then we could create the ssh-connect without the passwd using the ssh-key:
+	ssh-copy-id -i id_rsa.pub(client) -oPort=remote_port_number pi@your_server_ip 	
+
+6. So we can tran the data with rsync now:
+	run ./non-realtime/run.py
+
+
+Note:  we use the rsync to transfer the data from clients to server,
+	so the data in server must be backup one schedule.
+	The script in ../Backup can access this
