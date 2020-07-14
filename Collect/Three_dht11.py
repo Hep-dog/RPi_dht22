@@ -11,7 +11,7 @@ def main():
     passwd = ""
     dbname = "Three_DHT11"
     sensor = Adafruit_DHT.DHT11
-    sensor_gpips = [ 16, 20, 21 ]
+    sensor_gpips = [ 4, 18, 23 ]
     outputs = [ "/home/pi/Work/RPi_dht22/Collect/data/dht11_1.dat",
     		"/home/pi/Work/RPi_dht22/Collect/data/dht11_2.dat",
     		"/home/pi/Work/RPi_dht22/Collect/data/dht11_3.dat"]

@@ -8,8 +8,9 @@ sudo echo "deb https://repos.influxdata.com/debian buster stable" | sudo tee /et
 
 sudo apt update			&&
 sudo apt install influxdb		&&
-sudo apt install influxdb-client	&&
-sudo apt install telegraf		&&
+pip install influxdb			&&
+#sudo apt install influxdb-client	&&
+#sudo apt install telegraf		&&
 
 
 sudo echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list	&&
@@ -20,4 +21,7 @@ sudo apt install grafana	&&
 
 
 sudo systemctl enable influxdb.service	&&
-sudo systemctl enable grafana-server
+sudo systemctl enable grafana-server	&&
+
+cd ../Adafruit_Python_DHT/ &&
+sudo python setup.py install
